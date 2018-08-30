@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SecondActivity">
 
-    <include android:id="@+id/header" layout="@layout/title"/>
-    <Button
-        android:layout_below="@+id/header"
-        android:id="@+id/button_2"
+    <!--<include android:id="@+id/header" layout="@layout/title"/>-->
+    <!--<Button-->
+        <!--android:layout_below="@+id/header"-->
+        <!--android:id="@+id/button_2"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="button2"/>-->
+
+    <com.xxx.xx.helloword.TitleLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="button2"/>
-</RelativeLayout>
+        android:layout_height="wrap_content"/>
+
+
+</LinearLayout>

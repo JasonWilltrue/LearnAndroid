@@ -27,18 +27,18 @@ public class SecondActivity extends AppCompatActivity {
         String data = intent.getStringExtra("extra_data");
         Log.d("SecondActivity", "传过来的数据: "+data);
 
-        Button button2 = (Button)findViewById(R.id.button_2);
-        button2.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-               Intent intent = new Intent();
-               intent.putExtra("data_result","i am back first!😝");
-               setResult(RESULT_OK,intent);
-               finish();
-            }
-        });
+//        Button button2 = (Button)findViewById(R.id.button_2);
+//        button2.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//               Intent intent = new Intent();
+//               intent.putExtra("data_result","i am back first!😝");
+//               setResult(RESULT_OK,intent);
+//               finish();
+//            }
+//        });
 
-
+//       自定义控件时间
 
 
 
