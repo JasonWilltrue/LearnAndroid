@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 public class FruitAdapter extends ArrayAdapter<Fruit> {
-
+    private static final String TAG = "FruitAdapter";
     private int resourceId;
 
 //    水果的适配器 上下文   list子类布局id  数据源
@@ -24,6 +24,7 @@ public class FruitAdapter extends ArrayAdapter<Fruit> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        android.util.Log.d(TAG, "getView: 看看这是什么");
         Fruit fruit = getItem(position); // 获取当前项的Fruit实例
         Log.d("FruitAdapter", "getView: "+1);
         /**
@@ -49,9 +50,11 @@ public class FruitAdapter extends ArrayAdapter<Fruit> {
     class ViewHolder {
 
         ImageView fruitImage;
-
+         
         TextView fruitName;
+        
 
     }
-
+    
+    
 }
