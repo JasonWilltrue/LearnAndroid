@@ -1,36 +1,34 @@
 package com.example.jason.activetest;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity_bak extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        Intent intent = new Intent(MainActivity.this,SenondActivity.class);
         Button button = (Button)findViewById(R.id.button1) ;
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,SenondActivity.class);
+                String data = "hello second";
+//                Intent intent = new Intent("com.example.jason.activetest_ACTION_START");
+                Intent intent = new Intent(MainActivity_bak.this,SenondActivity.class);
                 startActivityForResult(intent,1);
+                //传递数据
+                intent.putExtra("extra_data",data);
+                startActivity(intent);
             }
         });
     }
 
-    /**
-     * 使用了startActivityForResult
-     * 上一个页面销毁后自动调用本页面的onActivityResult方法
-     * @param requestCode 启动时候传入的请求吗
-     * @param resultCode  处理结果
-     * @param data        返回参数
-     */
     @Override
     protected void onActivityResult(int requestCode,int resultCode,Intent data){
         switch (requestCode)
@@ -39,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
                 if(resultCode == RESULT_OK)
                 {
                     String returnedData = data.getStringExtra("data_result");
-                    Log.d("firtst数据值:",returnedData);
+                    Log.d("firtst",returnedData);  String returnData = data.getStringExtra("data_result");
+
                 }
           break;
             default:

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.jason.activetest">
+    package="com.example.jason.activitylifetest">
 
     <application
         android:allowBackup="true"
@@ -12,15 +12,15 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SenondActivity">
-            <intent-filter>
-                <action android:name="com.example.jason.activetest_ACTION_START" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
+        <activity android:name=".NormalActivity">
+
         </activity>
+        <activity android:name=".DialogActivity"
+            android:theme="@android:style/Theme.Dialog"></activity>
     </application>
 
 </manifest>
