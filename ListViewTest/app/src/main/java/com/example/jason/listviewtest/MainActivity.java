@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-     private  String[] data= {"apple","Banana","orange","watermelon","pear","Grape","Cheey","Mango","c","d","e","f","g","a","重复","apple","Banana","orange","watermelon","pear","Grape"};
+     //private  String[] data= {"apple","Banana","orange","watermelon","pear","Grape","Cheey","Mango","c","d","e","f","g","a","重复","apple","Banana","orange","watermelon","pear","Grape"};
      private List<Fruit> fruitList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,13 +22,13 @@ public class MainActivity extends AppCompatActivity {
 ////        listView.setAdapter(adapter);
 
         initFruits();
-        FruitAdapter adapter = new FuritAdapter(MainActivity.this,R.layout.fruit_item,fruitList);
+        FuritAdapter adapter = new FuritAdapter(MainActivity.this,R.layout.fruit_item,fruitList);
         ListView listView = (ListView)findViewById(R.id.list_view);
         listView.setAdapter(adapter);
 
     }
     private void initFruits() {
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 12; i++) {
             Fruit apple = new Fruit("Apple", R.drawable.apple_pic);
             fruitList.add(apple);
             Fruit banana = new Fruit("Banana", R.drawable.banana_pic);
