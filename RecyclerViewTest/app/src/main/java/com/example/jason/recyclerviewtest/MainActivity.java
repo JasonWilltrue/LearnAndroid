@@ -21,7 +21,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initFruits();
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
+
+
+        //竖屏显示
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        //+横屏显示
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(layoutManager);
 
         FruitAdapter adapter = new FruitAdapter(fruitList);
