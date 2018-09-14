@@ -13,6 +13,11 @@ public class MsgAdapter extends RecyclerView.Adapter<MsgAdapter.ViewHolder>{
 
     private List<Msg> mMsgList; //初始化一个集合
 
+    public void setmMsgList(List<Msg> mMsgList) {
+        this.mMsgList = mMsgList;
+        notifyDataSetChanged();
+    }
+
     static class ViewHolder extends RecyclerView.ViewHolder{
         LinearLayout leftlayout;
         LinearLayout rightlayout;
