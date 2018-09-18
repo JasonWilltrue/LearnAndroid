@@ -49,7 +49,7 @@ public class BaseActivity extends AppCompatActivity {
         public void  onReceive(final Context context, Intent intent){
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setTitle("警告");
-            builder.setMessage("你的账号在别处登陆，本地强制下线");
+            builder.setMessage("你的账号在别处登陆，本地强制下线\uD83D\uDE48");
             builder.setCancelable(false);
             builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                 @Override
@@ -58,7 +58,7 @@ public class BaseActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(context,LoginActivity.class);
                     context.startActivity(intent);  //重启 Login
-                    
+
 
 
                 }
