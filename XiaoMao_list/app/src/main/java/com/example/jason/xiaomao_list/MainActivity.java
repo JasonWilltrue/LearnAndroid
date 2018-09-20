@@ -8,16 +8,18 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ListView lv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 //        1.有了ui控件了
-        ListView lv = (ListView) findViewById(R.id.lv);
+         lv = (ListView) findViewById(R.id.lv);
 
 //         2. 创建数据
         ArrayList<String> datas = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 50; i++) {
             datas.add("列表序列"+i);
         }
 
