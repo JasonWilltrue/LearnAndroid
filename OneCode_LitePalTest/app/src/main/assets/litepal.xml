@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal >
+    <dbname value="BookStore"></dbname>
+    <!--版本加1 代表更新-->
+    <version value = "2"></version>
+    <!--无论有多少个类添加进去就行-->
+    <list>
+       <mapping class="com.example.jason.onecode_litepaltest.Book"></mapping>
+        <mapping class="com.example.jason.onecode_litepaltest.Category"></mapping>
+    </list>
+</litepal>

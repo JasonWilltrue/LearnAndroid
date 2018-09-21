@@ -15,7 +15,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         dbHelper = new MyDatabaseHelper(this, "BookStore.db", null, 2);
     }
 
@@ -26,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void addData_Btn(View view) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-
         ContentValues values = new ContentValues();
 //        开始加入第一组数据
         values.put("name", "The da vinci Code");
@@ -40,19 +38,15 @@ public class MainActivity extends AppCompatActivity {
         values.put("pages", 100);
         values.put("price", 10.11);
         db.insert("Book", null, values);
-
     }
 
     public void updataData_Btn(View view) {
-
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("price", 10.99);
         //需要更新的是第几行
         String[] updateCode = new String[]{"The da vinci Code"};
         db.update("Book", values, "name=?", updateCode);
-
-
     }
 
     public void deleteData_Btn(View view) {

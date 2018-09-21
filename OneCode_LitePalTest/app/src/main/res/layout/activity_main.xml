@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <Button
+        android:id="@+id/create_databasse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="createBase_Btn"
+        android:text="创建LitePal book表"/>
+    <Button
+        android:id="@+id/add_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="addData_Btn"
+        android:text="LitePal 添加数据"/>
+
+    <Button
+        android:id="@+id/updata_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="updataData_Btn"
+        android:text="LitePal 更新数据"/>
+
+    <Button
+        android:id="@+id/delete_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="deleteData_Btn"
+        android:text="LitePal 删除数据"/>
+    <Button
+        android:id="@+id/query_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="query_Btn"
+        android:text="LitePal 查询数据"/>
+</LinearLayout>
