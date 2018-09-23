@@ -10,6 +10,4 @@
        android:onClick="sendNotic_Btn"
        android:text="下拉通知"
        android:layout_height="wrap_content" />
-
-
 </LinearLayout>
