@@ -11,6 +11,12 @@
         android:layout_height="wrap_content"
         android:onClick="takePhoto_Btn"
         android:text="打开相机"/>
+    <Button
+        android:id="@+id/open_photo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="openPhoto_Btn"
+        android:text="打开相册"/>
     <ImageView
         android:id="@+id/picture"
         android:layout_width="match_parent"
