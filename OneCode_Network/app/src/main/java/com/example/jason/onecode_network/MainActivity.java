@@ -1,11 +1,16 @@
 package com.example.jason.onecode_network;
 
+import android.app.Dialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,9 +20,12 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     TextView responseText;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,12 +33,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button sendRequest = (Button) findViewById(R.id.send_request);
         responseText = (TextView) findViewById(R.id.response_text);
         sendRequest.setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View v){
         if(v.getId() == R.id.send_request){
-            sendRequestWithHttpURLConnection();
+//            sendRequestWithHttpURLConnection();
+            sendRequestWithOkHttp();
         }
     }
 
@@ -76,6 +86,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
           }).start();
     }
 
+    private void sendRequestWithOkHttp(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    OkHttpClient client = new OkHttpClient();
+                    Request request = new Request.Builder()
+                            // 指定访问的服务器地址是电脑本机
+                            .url("http://192.168.8.93/getdata.json")
+                            .build();
+                    Response response = client.newCall(request).execute();
+                    Log.d("520it", "response: "+response);
+                    String responseData = response.body().string();
+                    Log.d("520it", "run: "+responseData);
+                    parseJSONWithJSONObject(responseData);
+//                    showResponse(responseData);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+            }
+        }).start();
+    }
+
+
     private  void showResponse(final String response){
         runOnUiThread(new Runnable() {
             @Override
@@ -85,5 +120,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
+    /**
+     * 解析json数据
+     */
+    private void parseJSONWithJSONObject(String jsonData) {
+        try {
+            JSONArray jsonArray = new JSONArray(jsonData);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                String id = jsonObject.getString("id");
+                String name = jsonObject.getString("name");
+                String version = jsonObject.getString("version");
+                Log.d("520it", "id is " + id);
+                Log.d("520it", "name is " + name);
+                Log.d("520it", "version is " + version);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
