@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 try{
                     OkHttpClient client = new OkHttpClient();
                     Request request = new Request.Builder()
-                            // 指定访问的服务器地址是电脑本机
+                            //  b
                             .url("http://192.168.8.93/getdata.json")
                             .build();
                     Response response = client.newCall(request).execute();
