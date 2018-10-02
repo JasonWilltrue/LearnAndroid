@@ -26,4 +26,7 @@ public class NewsTitleFragment extends Fragment {
             isTwoPane = false;
         }
     }
+
+    //TODO创建一个内部的adapter来作为recycler的适配器
+
 }

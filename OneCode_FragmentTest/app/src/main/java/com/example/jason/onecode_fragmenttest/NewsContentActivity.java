@@ -22,6 +22,7 @@ public class NewsContentActivity extends AppCompatActivity {
         String newsContent = getIntent().getStringExtra("news_content");
         NewsContentFragment newsContentFragment = (NewsContentFragment) getSupportFragmentManager
                 ().findFragmentById(R.id.news_content_fragment);
+        //调用刷新方法
         newsContentFragment.refresh(newsTitle,newsContent);
     }
 
