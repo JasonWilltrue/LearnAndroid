@@ -2,6 +2,7 @@ package com.example.jason.imtao;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -39,12 +40,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 初始化视图
      */
     private void initView(){
-         mMainBtn = (LinearLayout)findViewById(R.id.menu_main);
-         mFindBtn = (LinearLayout)findViewById(R.id.menu_find);
-         mMeBtn = (LinearLayout)findViewById(R.id.menu_me);
+         mMainBtn = (LinearLayout)this.findViewById(R.id.menu_main);
+         mFindBtn = (LinearLayout)this.findViewById(R.id.menu_find);
+         mMeBtn = (LinearLayout)this.findViewById(R.id.menu_me);
          mMainBtn.setOnClickListener(this);
-        mMainBtn.setOnClickListener(this);
-        mMainBtn.setOnClickListener(this);
+        mFindBtn.setOnClickListener(this);
+        mMeBtn.setOnClickListener(this);
 
     }
 
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.menu_main:
+                Log.d("520it", "onClick: 主页");
                 this.getSupportFragmentManager()
                         .beginTransaction()
                         .show(mMainFragment)
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .commit();
                 break;
             case R.id.menu_find:
+                Log.d("520it", "onClick: 发现");
                 this.getSupportFragmentManager()
                         .beginTransaction()
                         .hide(mMainFragment)
@@ -69,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .commit();
                 break;
             case R.id.menu_me:
+                Log.d("520it", "onClick: 我的");
                 this.getSupportFragmentManager()
                         .beginTransaction()
                         .hide(mMainFragment)
