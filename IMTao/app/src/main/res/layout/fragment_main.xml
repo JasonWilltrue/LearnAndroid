@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
+    android:layout_height="match_parent"
+    android:background="#00c">
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpage_main_header_ad"
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+    </android.support.v4.view.ViewPager>
+    <!--主页头部-->
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/main_search"/>
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="主页"/>
+        android:src="@mipmap/nav_header_index"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"/>
+
 </RelativeLayout>
