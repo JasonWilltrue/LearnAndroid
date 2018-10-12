@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">IMTao</string>
+    <string-array name="main_menu">
+        <item>飞机票</item>
+        <item>住酒店</item>
+        <item>去旅游</item>
+        <item>周边游</item>
+        <item>买什么</item>
+        <item>火车票</item>
+        <item>汽车票</item>
+        <item>其他</item>
+
+    </string-array>
 </resources>
