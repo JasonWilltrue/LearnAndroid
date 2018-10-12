@@ -14,10 +14,10 @@ import com.example.jason.imtao.entity.Menu;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/11/7.
+ *
  */
 //新建MainMenuAdapter继承RecyclerView.Adapter
-public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuViewholder>{
+public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuAdapter.MainMenuViewholder>{
 
     protected Context context;
     protected  List<Menu> menus;
@@ -47,15 +47,18 @@ public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuViewholder>{
     public int getItemCount() {
         return null!=menus?menus.size():0;
     }
-}
-// 2.定义一个类构造函数中传入View参数
-class  MainMenuViewholder extends RecyclerView.ViewHolder{
 
-    public ImageView mImgMenuIcon;
-    public TextView mTxtMenuName;
-    public MainMenuViewholder(View itemView) {
-        super(itemView);
-        mImgMenuIcon= (ImageView) itemView.findViewById(R.id.img_menu_icon);
-        mTxtMenuName= (TextView) itemView.findViewById(R.id.txt_menu_name);
+
+    // 2.定义一个类构造函数中传入View参数
+   public class  MainMenuViewholder extends RecyclerView.ViewHolder{
+
+        public ImageView mImgMenuIcon;
+        public TextView mTxtMenuName;
+        public MainMenuViewholder(View itemView) {
+            super(itemView);
+            mImgMenuIcon= (ImageView) itemView.findViewById(R.id.img_menu_icon);
+            mTxtMenuName= (TextView) itemView.findViewById(R.id.txt_menu_name);
+        }
     }
 }
+

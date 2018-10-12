@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.example.jason.imtao.R;
 import com.example.jason.imtao.adapter.MainHeaderAdapter;
+import com.example.jason.imtao.adapter.MainMenu2Adapter;
 import com.example.jason.imtao.adapter.MainMenuAdapter;
 import com.example.jason.imtao.util.DataUtil;
 
@@ -59,7 +60,7 @@ public class MainFragment extends Fragment {
         //菜单
         //设置布局样式
         mRecycleViewMenu.setLayoutManager(new GridLayoutManager(getActivity(),4));
-        MainMenuAdapter mainMenuAdapter=new MainMenuAdapter(getActivity(),DataUtil.getMainMenu(menuIons,
+        MainMenu2Adapter mainMenuAdapter=new MainMenu2Adapter(getActivity(),DataUtil.getMainMenu(menuIons,
                 menus));
         mRecycleViewMenu.setAdapter(mainMenuAdapter);
 
