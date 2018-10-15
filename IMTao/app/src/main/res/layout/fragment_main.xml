@@ -50,13 +50,22 @@
                 android:layout_below="@+id/recyclerview_main_menu"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"></View>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview_main_menu2"
+                android:layout_below="@+id/main_menu_gray_line1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </android.support.v7.widget.RecyclerView>
             <View
                 android:id="@+id/main_menu_gray_line2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#D8DDE1"
-                android:layout_below="@+id/recyclerview_main_menu"
+                android:layout_below="@+id/recyclerview_main_menu2"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"></View>
