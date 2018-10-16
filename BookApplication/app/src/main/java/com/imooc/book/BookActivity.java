@@ -102,7 +102,7 @@ public class BookActivity extends Activity {
         });
 
         // set user setting view listener.
-
+        //监听手势 功能菜单的显示和隐藏
         mBookPageView.setOnUserNeedSettingListener(new BookPageView.OnUserNeedSettingListener() {
             @Override
             public void onUserNeedSetting() {
@@ -176,6 +176,9 @@ public class BookActivity extends Activity {
 
     }
 
+    /**
+     * HorizontalAdapter 数据容器
+     */
     private class HorizontalAdapter extends RecyclerView.Adapter {
 
         private Context mContext;
@@ -201,6 +204,7 @@ public class BookActivity extends Activity {
             textView.setTextColor(Color.WHITE);
             textView.setGravity(Gravity.CENTER);
             textView.setText(mData.get(position));
+            //数据保存方式
             final SharedPreferences sharedPreferences =
                     mContext.getSharedPreferences("imooc_book_preference", MODE_PRIVATE);
 

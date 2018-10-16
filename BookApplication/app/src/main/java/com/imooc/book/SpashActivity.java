@@ -23,7 +23,6 @@ public class SpashActivity extends Activity {
     public static final int INTERVAL_TIME = 1000;  //间隔时间
     private TextView mTextView;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +32,10 @@ public class SpashActivity extends Activity {
 
         final MyHandler handler = new MyHandler(this);
 
+//        而Handler中obtainMessage与new Message的差别：
+//        obtainmessage（）是从消息池中拿来一个msg 不须要另开辟空间new
+//        new须要又一次申请，效率低，obtianmessage能够循环利用。
+//        Message message = new Message();
         Message message = Message.obtain();
         message.what = CODE;
         message.arg1 = TOTAL_TIME;
