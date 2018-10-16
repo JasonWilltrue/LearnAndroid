@@ -110,6 +110,7 @@ public class Choose_AreaFragment extends Fragment {
                 }
             }
         });
+        //查询省份
         queryProvinces();
     }
 
@@ -118,16 +119,24 @@ public class Choose_AreaFragment extends Fragment {
      */
 
     private void queryProvinces(){
+        //改变标题字体
         titleText.setText("中国");
+        //返回按钮隐藏
         backButton.setVisibility(View.GONE);
+        //读取省份数据
         provinceList = DataSupport.findAll(Province.class);
+        //判断是否有数据
         if(provinceList.size()>0){
+            //清空list
             datalist.clear();
+            //获取每一个省份名称
             for(Province province : provinceList){
                 datalist.add(province.getProvinceName());
             }
+            //刷新数据列表
             adpater.notifyDataSetChanged();
             listView.setSelection(0);
+            //当前级别
             currentLevel = LEVEL_PROVINCE;
         }else{
             String address = "http://guolin.tech/api/china";
@@ -136,12 +145,45 @@ public class Choose_AreaFragment extends Fragment {
     }
 
     private void queryCities() {
-        return;
+        titleText.setText(selectedProvince.getProvinceName());
+        backButton.setVisibility(View.VISIBLE);
+        cityList = DataSupport.where("provinceid = ?",String.valueOf(selectedProvince.getId()))
+                .find(City.class);
+        if(cityList.size()>0){
+            datalist.clear();
+            for(City city : cityList){
+                datalist.add(city.getCityName());
+            }
+            adpater.notifyDataSetChanged();
+            listView.setSelection(0);
+            currentLevel = LEVEL_CITY;
+        }else {
+            int provinceCode = selectedProvince.getProvinceCode();
+            String address = "http://guolin.tech/api/china/"+provinceCode;
+            querFormServer(address,"city");
+        }
     }
 
     private void queryCounties() {
+        titleText.setText(selectedCity.getCityName());
+        backButton.setVisibility(View.VISIBLE);
+        countyList = DataSupport.where("cityid = ?",String.valueOf(selectedCity.getId())).find
+                (County.class);
+        if(countyList.size()>0){
+            datalist.clear();
+            for(County county:countyList){
+                datalist.add(county.getCountyName());
+            }
+            adpater.notifyDataSetChanged();
+            listView.setSelection(0);
+            currentLevel = LEVEL_COUNTY;
+        }else{
 
-        return;
+            int provinceCode = selectedProvince.getProvinceCode();
+            int cityCode = selectedCity.getCityCode();
+            String address = "http://guolin.tech/api/china/"+provinceCode+"/"+cityCode;
+            querFormServer(address,"county");
+        }
     }
 
     /**
