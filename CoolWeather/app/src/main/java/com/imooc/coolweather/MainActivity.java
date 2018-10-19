@@ -15,6 +15,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d("520it", "onCreate: 是不是第一个走到这里");
 
+        /**
+         * 缓存判断
+         */
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         if(prefs.getString("weather",null) != null){
             Intent intent = new Intent(this,WeatherActivity.class);

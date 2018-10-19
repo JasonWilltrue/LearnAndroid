@@ -1,16 +1,20 @@
 package com.imooc.coolweather;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.imooc.coolweather.gson.Forecast;
 import com.imooc.coolweather.gson.Weather;
 import com.imooc.coolweather.util.HttpUtil;
@@ -36,16 +40,27 @@ public class WeatherActivity extends AppCompatActivity {
     private TextView comfortText;
     private TextView carWashText;
     private TextView sportText;
+    private ImageView bingPicImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /**
+         * 实现背景与状态栏融合在一起 android大于5.0支持
+         */
+        if (Build.VERSION.SDK_INT >= 21) {
+            View decorView = getWindow().getDecorView();
+            int option = View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION ;
+            decorView.setSystemUiVisibility(option);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);//设置状态栏透明
+        }
         setContentView(R.layout.activity_weather);
         /**
          * 将请求数据展示在界面上
          */
         // 初始化各控件
-//        bingPicImg = (ImageView) findViewById(R.id.bing_pic_img);
+        bingPicImg = (ImageView) findViewById(R.id.bing_pic_img);
+
         weatherLayout = (ScrollView) findViewById(R.id.weather_layout);
         titleCity = (TextView) findViewById(R.id.title_city);
         titleUpdateTime = (TextView) findViewById(R.id.title_update_time);
@@ -65,6 +80,8 @@ public class WeatherActivity extends AppCompatActivity {
         String weatherString = prefs.getString("weather",null);
         if(weatherString != null){
             //有缓存直接解析天气数据
+            Weather weather = Utility.handleWeatherResponse(weatherString);
+            showWeatherInfo(weather);
         }else{
             //没有缓存去请求数据
             String weatherId = getIntent().getStringExtra("weather_id");
@@ -72,6 +89,40 @@ public class WeatherActivity extends AppCompatActivity {
             requestWeather(weatherId);
         }
 
+        String bingPic = prefs.getString("bing-pic",null);
+        if (bingPic != null){
+            Glide.with(this).load(bingPic).into(bingPicImg);
+        }else{
+            //下载图片
+            loadBingPic();
+        }
+
+    }
+
+    /**
+     * 下载bing壁纸
+     */
+    private void loadBingPic() {
+      String requestBingPic = "http://guolin.tech/api/bing_pic";
+      HttpUtil.sendOkHttpRequest(requestBingPic, new Callback() {
+          @Override
+          public void onFailure(Call call, IOException e) {
+              e.printStackTrace();
+          }
+          @Override
+          public void onResponse(Call call, Response response) throws IOException {
+             final String bingPic = response.body().string();
+             SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences
+                     (WeatherActivity.this).edit();
+             editor.putString("bing_pic",bingPic);
+             runOnUiThread(new Runnable() {
+                 @Override
+                 public void run() {
+                     Glide.with(WeatherActivity.this).load(bingPic).into(bingPicImg);
+                 }
+             });
+          }
+      });
     }
 
     /**
@@ -104,7 +155,7 @@ public class WeatherActivity extends AppCompatActivity {
                 });
             }
         });
-
+        loadBingPic();
     }
 
     /**
