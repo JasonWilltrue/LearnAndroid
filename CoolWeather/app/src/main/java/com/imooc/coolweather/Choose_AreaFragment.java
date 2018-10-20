@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.imooc.coolweather.db.City;
 import com.imooc.coolweather.db.County;
 import com.imooc.coolweather.db.Province;
+import com.imooc.coolweather.gson.Weather;
 import com.imooc.coolweather.util.HttpUtil;
 import com.imooc.coolweather.util.Utility;
 
@@ -97,12 +98,21 @@ public class Choose_AreaFragment extends Fragment {
                     selectedCity = cityList.get(position);
                     queryCounties();
                 }else if(currentLevel == LEVEL_COUNTY){
-                    //如果点击县区之后跳转到天气页面
                     String weatherId = countyList.get(position).getWeatherId();
-                    Intent intent = new Intent(getActivity(),WeatherActivity.class);
-                    intent.putExtra("weather_id",weatherId);
-                    startActivity(intent);
-                    getActivity().finish();
+                    //++判断当前activity 还是要跳转weatherActivivty
+                    if(getActivity() instanceof MainActivity){
+                        //如果点击县区之后跳转到天气页面
+                        Intent intent = new Intent(getActivity(),WeatherActivity.class);
+                        intent.putExtra("weather_id",weatherId);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }else if(getActivity() instanceof WeatherActivity){
+                          WeatherActivity activity = (WeatherActivity) getActivity();
+                          activity.drawerLayout.closeDrawers();
+                          activity.swipeRefresh.setRefreshing(true);
+                          activity.requestWeather(weatherId);
+                    }
+
                 }
             }
 
